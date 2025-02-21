@@ -1,12 +1,8 @@
-import './App.css'
-
-function App() {
-
+const App: React.FC = () => {
   return (
     <>
-      
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
