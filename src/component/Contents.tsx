@@ -1,5 +1,5 @@
 import React from "react";
-import { Profile } from "./ResumeTypes";
+import { Profile } from "../ResumeTypes";
 
 interface ContentsProps {
   profile: Profile;
@@ -24,32 +24,6 @@ const Contents: React.FC<ContentsProps> = ({profile}) => {
           <div>
             <p className="text-gray-500">{profile.summary}</p>
           </div>
-        </section>
-
-        {/* 기술 스택 섹션 */}
-        <section className="mb-4">
-          <h2 className="text-xl font-semibold border-b pb-2 mb-2">Tech Stack</h2>
-          <div className="grid grid-cols-1 gap-2">
-            {Object.entries(profile.tech_stack).map(([category, items]) => (
-              <div key={category} className="mb-2">
-                <h3 className="font-semibold">{category}</h3>
-                <div className="flex flex-wrap gap-1 mt-1">
-                  {items.map((item: string, idx: number) => (
-                    <span key={idx} className="badge badge-primary badge-outline">{item}</span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* 학력 */}
-        <section className="mb-4">
-          <h2 className="text-xl font-semibold border-b pb-2 mb-2">Education</h2>
-          <p className="font-medium">{profile.education.university}</p>
-          <p className="text-gray-500">{profile.education.major} {profile.education.double_major ? `/ ${profile.education.double_major}` : ""}</p>
-          <p>GPA: {profile.education.gpa}</p>
-          <p className="text-gray-500">{profile.education.period}</p>
         </section>
 
         {/* 경력 */}

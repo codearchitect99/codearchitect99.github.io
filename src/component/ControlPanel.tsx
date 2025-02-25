@@ -1,16 +1,16 @@
 import { FaSun, FaMoon } from "react-icons/fa";
 import { BiWorld } from "react-icons/bi";
 
-interface PanelProps {
+interface ControlPanelProps {
     theme: "light" | "dark";
     setTheme: React.Dispatch<React.SetStateAction<"light" | "dark">>;
     lang: "ko" | "en";
     setLang: React.Dispatch<React.SetStateAction<"ko" | "en">>;
   }
 
-const Panel: React.FC<PanelProps> = ({theme, setTheme, lang, setLang}) => {
+const ControlPanel: React.FC<ControlPanelProps> = ({theme, setTheme, lang, setLang}) => {
       return (
-      <div className="flex gap-2 mb-2 w-full">
+      <div className="flex gap-2 mb-2">
         <label className="swap swap-rotate text-sm">
           <input 
             type="checkbox" 
@@ -31,4 +31,4 @@ const Panel: React.FC<PanelProps> = ({theme, setTheme, lang, setLang}) => {
     )
 }
 
-export default Panel;
+export default ControlPanel;
