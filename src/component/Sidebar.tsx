@@ -1,40 +1,73 @@
 import { Profile } from "../ResumeTypes";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaEnvelope, FaPhone, FaCode, FaGraduationCap, FaUser } from "react-icons/fa";
 
 interface SidebarProps {
   profile: Profile;
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ profile }) => {
+  const { name } = profile.basic_info;
+  const { email, phone } = profile.basic_info.contact;
+  const { github, linkedin } = profile.basic_info;
+  const { university, major, double_major, gpa, period } = profile.education;
+
   return (
-    <aside className="w-full md:w-72 border h-full p-6 rounded-lg">
+    <aside className="w-full h-full bg-blue-600 rounded-r-xl rounded-l-none flex flex-col items-center p-4 text-white print:text-black print:p-0">
+      {/* 프로필 이미지 */}
+      <section className="w-full flex flex-col justify-center items-center">
+        <img
+          src="profile.jpg"
+          alt="Profile"
+          className="rounded-full w-28 h-28 border-4 border-blue-300 shadow-md mt-4"
+        />
+        <h1 className="text-2xl font-bold">{name}</h1>
+      </section>
+      
       {/* 연락처 정보 */}
-      <section className="mb-6">
-        <h2 className="text-lg font-semibold border-b pb-2 mb-2">Contact</h2>
-        <p>Email: {profile.basic_info.contact.email}</p>
-        <p>Phone: {profile.basic_info.contact.phone}</p>
-        <div className="mt-2 space-y-1">
-          <p className="flex items-center gap-2">
-            <FaGithub className="inline-block" />
-            <a href={profile.basic_info.github} className="text-blue-500 hover:underline">{profile.basic_info.github}</a>
+      <section className="w-full mt-6">
+        <h2 className="text-sm font-semibold border-b pb-1 mb-2 flex items-center gap-2">
+          <FaUser /> Contact
+        </h2>
+        <div className="text-xs space-y-2">
+          <p className="flex items-center gap-2 font-medium">
+            <FaEnvelope size={16} className="" /> {email}
           </p>
-          <p className="flex items-center gap-2">
-            <FaLinkedin className="inline-block" />
-            <a href={profile.basic_info.linkedin} className="text-blue-500 hover:underline">{profile.basic_info.linkedin}</a>
+          <p className="flex items-center gap-2 font-medium">
+            <FaPhone size={16} className="" /> {phone}
           </p>
+          {github && (
+            <p className="flex items-center gap-2">
+              <FaGithub size={16} className="" />
+              <a href={github} className=" hover:text-gray-300 font-semibold hover:underline">
+                {github}
+              </a>
+            </p>
+          )}
+          {linkedin && (
+            <p className="flex items-center gap-2">
+              <FaLinkedin size={16} className="" />
+              <a href={linkedin} className=" hover:text-gray-300 font-semibold hover:underline">
+                {linkedin}
+              </a>
+            </p>
+          )}
         </div>
       </section>
 
-      {/* 기술 스택 섹션 */}
-      <section className="mb-6">
-        <h2 className="text-lg font-semibold border-b pb-2 mb-2">Tech Stack</h2>
-        <div className="grid grid-cols-1 gap-2">
+      {/* 기술 스택 */}
+      <section className="w-full mt-4">
+        <h2 className="text-sm font-semibold border-b pb-1 mb-2  flex items-center gap-2">
+          <FaCode /> Tech Stack
+        </h2>
+        <div className="text-xs space-y-2">
           {Object.entries(profile.tech_stack).map(([category, items]) => (
-            <div key={category}>
-              <h3 className="font-semibold">{category}</h3>
+            <div key={category} className="mb-1">
+              <h3 className="font-semibold text-xs">{category}</h3>
               <div className="flex flex-wrap gap-1 mt-1">
                 {items.map((item: string, idx: number) => (
-                  <span key={idx} className="badge badge-primary badge-outline">{item}</span>
+                  <span key={idx} className="bg-blue-500 px-2 py-1 text-xs rounded-lg font-medium shadow-sm">
+                    {item}
+                  </span>
                 ))}
               </div>
             </div>
@@ -42,15 +75,19 @@ const Sidebar: React.FC<SidebarProps> = ({ profile }) => {
         </div>
       </section>
 
-      {/* 학력 */}
-      <section>
-        <h2 className="text-lg font-semibold border-b pb-2 mb-2">Education</h2>
-        <p className="font-medium">{profile.education.university}</p>
-        <p className="text-gray-500">
-          {profile.education.major} {profile.education.double_major ? `/ ${profile.education.double_major}` : ""}
-        </p>
-        <p>GPA: {profile.education.gpa}</p>
-        <p className="text-gray-500">{profile.education.period}</p>
+      {/* 학력 정보 */}
+      <section className="w-full mt-6">
+        <h2 className="text-sm font-semibold border-b pb-1 mb-2 flex items-center gap-2">
+          <FaGraduationCap /> Education
+        </h2>
+        <div className="text-xs ">
+          <p className="font-semibold ">{university}</p>
+          <p className="font-medium">
+            {major} {double_major && `/ ${double_major}`}
+          </p>
+          <p className="font-medium">GPA: {gpa}</p>
+          <p className="">{period}</p>
+        </div>
       </section>
     </aside>
   );

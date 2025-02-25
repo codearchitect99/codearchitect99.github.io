@@ -1,43 +1,39 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Contents from "./component/Contents";
 import Sidebar from "./component/Sidebar";
-import { Profile, UserProfile } from "./ResumeTypes";
-import resumeData from "./resume.json";
 import ControlPanel from "./component/ControlPanel";
+import { Profile } from "./ResumeTypes";
+import resumeData from "./resume.json";
 
 const App: React.FC = () => {
-  const [theme, setTheme] = useState<"light" | "dark">("light");
   const [lang, setLang] = useState<"ko" | "en">("en");
-  const data: UserProfile = resumeData;
-  const profile: Profile = data[lang];
-
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-  }, [theme]);
+  const profile: Profile = resumeData[lang];
 
   return (
-    <div
-      className={`flex flex-col min-h-screen items-center py-6 transition-colors ${
-        theme === "dark" ? "bg-gray-900 text-white" : "bg-gray-50 text-gray-900"
-      }`}
-    >
-      {/* Control Panel */}
-      <div className="w-full max-w-screen-lg flex justify-end px-4">
-        <ControlPanel theme={theme} setTheme={setTheme} lang={lang} setLang={setLang} />
+    <div className="flex flex-col items-center bg-gray-200 min-h-screen p-2 print:bg-white print:p-0">
+      {/* Control Panel (숨김 처리) */}
+      <div className="print:hidden max-w-4xl w-full print:max-w-full flex justify-end p-2">
+        <ControlPanel lang={lang} setLang={setLang} />
       </div>
 
-      {/* 메인 레이아웃 */}
-      <div className="flex flex-col md:flex-row max-w-screen-lg w-full gap-6 mt-6 px-4">
-        {/* 사이드바 */}
-        <aside className="w-full md:w-1/3 lg:w-1/4">
-          <Sidebar profile={profile} />
-        </aside>
+      {/* Resume Layout */}
+      <div className="max-w-4xl w-full print:max-w-full">
+        {/* Main Layout */}
+        <div className="flex flex-col md:flex-row-reverse print:flex-row-reverse">
+  {/* Sidebar - 작은 화면에서는 상단에 배치 */}
+  <aside className="w-full md:w-1/3 print:w-1/3 print:bg-white print:p-2">
+    <Sidebar profile={profile} />
+  </aside>
 
-        {/* 콘텐츠 영역 */}
-        <main className="w-full md:w-2/3 lg:w-3/4">
-          <Contents profile={profile} />
-        </main>
+  {/* Main Content */}
+  <main className="flex-1 print:w-2/3">
+    <Contents profile={profile} />
+  </main>
+</div>
       </div>
+
+      {/* 프린트 페이지 자동 분리 */}
+      <div className="hidden print:block print:page-break-before-always" />
     </div>
   );
 };
