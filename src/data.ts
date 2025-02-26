@@ -13,7 +13,7 @@ const data: UserProfile = {
         "link2": "",
         "link3": ""
       },
-      "summary": "",
+      "summary": "Java & Spring Boot 기반 백엔드 개발자로 성장하고자 합니다. React & TypeScript 프론트엔드 경험과 AWS, Docker 등 DevOps 학습을 통해 풀스택 역량을 키우고 있습니다. 효율적인 코드와 확장성을 고려한 설계를 중요하게 생각하며, 협업을 통한 개발 경험을 쌓아가고 싶습니다.",
       "tech_stack": {
         "backend": [],
         "frontend": [],
