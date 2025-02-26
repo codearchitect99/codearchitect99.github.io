@@ -1,15 +1,16 @@
-import { Profile } from "../ResumeTypes";
-import { FaGithub, FaLinkedin, FaEnvelope, FaPhone, FaCode, FaGraduationCap, FaUser } from "react-icons/fa";
+import { BasicInfo, Education, Profile, TechStack } from "../DataTypes";
+import { FaGithub, FaLinkedin, FaEnvelope, FaCode, FaGraduationCap, FaUser, FaLink } from "react-icons/fa";
 
 interface SidebarProps {
   profile: Profile;
 }
 
 const Sidebar: React.FC<SidebarProps> = ({ profile }) => {
-  const { name } = profile.basic_info;
-  const { email, phone } = profile.basic_info.contact;
-  const { github, linkedin } = profile.basic_info;
-  const { university, major, double_major, gpa, period } = profile.education;
+  const basic_info: BasicInfo = profile.basic_info;
+  const tech_stack: TechStack = profile.tech_stack;
+  const education: Education = profile.education;
+
+  console.log(basic_info);
 
   return (
     <aside className="w-full h-full bg-blue-600 rounded-r-xl rounded-l-none flex flex-col items-center p-4 text-white print:text-black print:p-0">
@@ -20,34 +21,58 @@ const Sidebar: React.FC<SidebarProps> = ({ profile }) => {
           alt="Profile"
           className="rounded-full w-28 h-28 border-4 border-blue-300 shadow-md mt-4"
         />
-        <h1 className="text-2xl font-bold">{name}</h1>
+        <h1 className="text-2xl font-bold">{basic_info.name}</h1>
       </section>
       
-      {/* 연락처 정보 */}
+      {/* 기본 정보 */}
       <section className="w-full mt-6">
         <h2 className="text-sm font-semibold border-b pb-1 mb-2 flex items-center gap-2">
           <FaUser /> Contact
         </h2>
         <div className="text-xs space-y-2">
-          <p className="flex items-center gap-2 font-medium">
-            <FaEnvelope size={16} className="" /> {email}
-          </p>
-          <p className="flex items-center gap-2 font-medium">
-            <FaPhone size={16} className="" /> {phone}
-          </p>
-          {github && (
+          {basic_info.email && (
+            <p className="flex items-center gap-2">
+              <FaEnvelope size={16} className="" />
+              {basic_info.email}
+            </p>
+          )}
+          {basic_info.github && (
             <p className="flex items-center gap-2">
               <FaGithub size={16} className="" />
-              <a href={github} className=" hover:text-gray-300 font-semibold hover:underline">
-                {github}
+              <a href={basic_info.github} className=" hover:text-gray-300 font-semibold hover:underline">
+                {basic_info.github}
               </a>
             </p>
           )}
-          {linkedin && (
+          {basic_info.linkedin && (
             <p className="flex items-center gap-2">
               <FaLinkedin size={16} className="" />
-              <a href={linkedin} className=" hover:text-gray-300 font-semibold hover:underline">
-                {linkedin}
+              <a href={basic_info.linkedin} className=" hover:text-gray-300 font-semibold hover:underline">
+                {basic_info.linkedin}
+              </a>
+            </p>
+          )}
+          {basic_info.link1 && (
+            <p className="flex items-center gap-2">
+              <FaLink size={16} className="" />
+              <a href={basic_info.link1} className=" hover:text-gray-300 font-semibold hover:underline">
+                {basic_info.link1}
+              </a>
+            </p>
+          )}
+          {basic_info.link2 && (
+            <p className="flex items-center gap-2">
+              <FaLink size={16} className="" />
+              <a href={basic_info.link2} className=" hover:text-gray-300 font-semibold hover:underline">
+                {basic_info.link2}
+              </a>
+            </p>
+          )}
+          {basic_info.link3 && (
+            <p className="flex items-center gap-2">
+              <FaLink size={16} className="" />
+              <a href={basic_info.link3} className=" hover:text-gray-300 font-semibold hover:underline">
+                {basic_info.link3}
               </a>
             </p>
           )}
@@ -60,7 +85,7 @@ const Sidebar: React.FC<SidebarProps> = ({ profile }) => {
           <FaCode /> Tech Stack
         </h2>
         <div className="text-xs space-y-2">
-          {Object.entries(profile.tech_stack).map(([category, items]) => (
+          {Object.entries(tech_stack).map(([category, items]) => (
             <div key={category} className="mb-1">
               <h3 className="font-semibold text-xs">{category}</h3>
               <div className="flex flex-wrap gap-1 mt-1">
@@ -81,12 +106,12 @@ const Sidebar: React.FC<SidebarProps> = ({ profile }) => {
           <FaGraduationCap /> Education
         </h2>
         <div className="text-xs ">
-          <p className="font-semibold ">{university}</p>
+          <p className="font-semibold ">{education.university}</p>
           <p className="font-medium">
-            {major} {double_major && `/ ${double_major}`}
+            {education.major} {education.double_major && `/ ${education.double_major}`}
           </p>
-          <p className="font-medium">GPA: {gpa}</p>
-          <p className="">{period}</p>
+          <p className="font-medium">GPA: {education.gpa}</p>
+          <p className="">{education.period}</p>
         </div>
       </section>
     </aside>

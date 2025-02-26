@@ -1,23 +1,20 @@
-export interface ContactInfo {
-  email: string;
-  phone: string;
-}
-
 export interface BasicInfo {
   name: string;
-  contact: ContactInfo;
+  email: string;
   location: string;
   github: string;
   portfolio: string;
   linkedin: string;
+  link1: string;
+  link2: string;
+  link3: string;
 }
 
 export interface TechStack {
-  languages: string[];
   backend: string[];
-  database: string[];
-  infrastructure: string[];
-  tools: string[];
+  frontend: string[];
+  devops: string[];
+  etc: string[];
 }
 
 export interface Education {
@@ -34,8 +31,6 @@ export interface WorkExperience {
   period: string;
   project: string;
   responsibilities: string[];
-  annual_salary: string;
-  primary_role: string;
 }
 
 export interface Project {
@@ -53,13 +48,10 @@ export interface Activity {
   tasks: string[];
 }
 
-export interface AdditionalInfo {
-  blog: string;
-  languages: {
-    korean: string;
-    english: string;
-    japanese: string;
-  };
+export interface Additional {
+  title: string;
+  description: string;
+  period: string;
 }
 
 export interface Profile {
@@ -71,7 +63,7 @@ export interface Profile {
   projects: Project[];
   activities: Activity[];
   certifications: string[];
-  additional_info: AdditionalInfo;
+  additionals: Additional[];
 }
 
 export interface UserProfile {

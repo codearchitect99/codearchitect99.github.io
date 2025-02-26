@@ -1,13 +1,11 @@
 import React from "react";
-import { Profile } from "../ResumeTypes";
+import { Profile } from "../DataTypes";
 
 interface ContentsProps {
   profile: Profile;
 }
 
 const Contents: React.FC<ContentsProps> = ({ profile }) => {
-  const { blog, languages } = profile.additional_info;
-
   return (
     <div className="p-4 bg-white w-full h-full flex flex-col rounded-l-xl rounded-r-none text-black">
         {/* 기본 정보 섹션 */}
@@ -78,20 +76,16 @@ const Contents: React.FC<ContentsProps> = ({ profile }) => {
         </section>
 
         {/* 추가 정보 */}
-        {blog || languages ? (
-          <section>
-            <h2 className="text-xl font-semibold border-b pb-2 mb-2">Additional Info</h2>
-            {blog && (
-              <p>
-                Blog: <a href={blog} className="text-blue-500 hover:underline">{blog}</a>
-              </p>
-            )}
-            <p>
-              Languages: Korean ({languages.korean}), English ({languages.english})
-              {languages.japanese && `, Japanese (${languages.japanese})`}
-            </p>
-          </section>
-        ) : null}
+        <section className="mb-4">
+          <h2 className="text-xl font-semibold border-b pb-2 mb-2">Activities</h2>
+          {profile.additionals.map((additional, index) => (
+            <div key={index} className="mb-2">
+              <h3 className="font-medium">{additional.title}</h3>
+              <p className="text-gray-500">{additional.period}</p>
+              <ul className="list-disc list-inside ml-4">{additional.description}</ul>
+            </div>
+          ))}
+        </section>
     </div>
   );
 };

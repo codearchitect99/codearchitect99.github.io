@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import Contents from "./component/Contents";
 import Sidebar from "./component/Sidebar";
 import ControlPanel from "./component/ControlPanel";
-import { Profile } from "./ResumeTypes";
-import resumeData from "./resume.json";
+import { Profile } from "./DataTypes";
+import data from "./data";
 
 const App: React.FC = () => {
   const [lang, setLang] = useState<"ko" | "en">("en");
-  const profile: Profile = resumeData[lang];
+  const profile: Profile = data[lang];
 
   return (
     <div className="flex flex-col items-center bg-gray-200 min-h-screen p-2 print:bg-white print:p-0">
