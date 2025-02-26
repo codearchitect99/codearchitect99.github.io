@@ -6,7 +6,7 @@ import { Profile } from "./DataTypes";
 import data from "./data";
 
 const App: React.FC = () => {
-  const [lang, setLang] = useState<"ko" | "en">("en");
+  const [lang, setLang] = useState<"ko" | "en">("ko");
   const profile: Profile = data[lang];
 
   return (
