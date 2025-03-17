@@ -1,5 +1,5 @@
 import React from "react";
-import { Profile } from "../DataTypes";
+import { Profile } from "../DataTypes.ts";
 
 interface ContentsProps {
   profile: Profile;

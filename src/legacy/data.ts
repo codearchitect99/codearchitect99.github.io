@@ -1,4 +1,4 @@
-import { UserProfile } from "./DataTypes";
+import { UserProfile } from "./DataTypes.ts";
 
 const data: UserProfile = {
     "ko": {

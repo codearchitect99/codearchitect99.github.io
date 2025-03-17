@@ -1,4 +1,4 @@
-import { BasicInfo, Education, Profile, TechStack } from "../DataTypes";
+import { BasicInfo, Education, Profile, TechStack } from "../DataTypes.ts";
 import { FaGithub, FaLinkedin, FaEnvelope, FaCode, FaGraduationCap, FaUser, FaLink } from "react-icons/fa";
 
 interface SidebarProps {

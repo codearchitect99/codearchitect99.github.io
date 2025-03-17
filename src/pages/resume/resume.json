@@ -1,0 +1,65 @@
+{
+  "basicInfo": {
+    "name": "양성원",
+    "job": "Backend Developer",
+    "github": "https://github.com/codearchitect99",
+    "portfolio": "https://portfolio.codearchitect99.dev",
+    "linkedin": "https://www.linkedin.com/in/ysw991106",
+    "blog": "https://blog.codearchitect99.dev",
+    "email": "ysw991106@gmail.com",
+    "about": "Java & Spring Boot 기반 백엔드 개발자로 성장하고자 합니다. React & TypeScript 프론트엔드 경험과 AWS, Docker 등 DevOps 학습을 통해 풀스택 역량을 키우고 있습니다. 효율적인 코드와 확장성을 고려한 설계를 중요하게 생각하며, 협업을 통한 개발 경험을 쌓아가고 싶습니다."
+  },
+  "skills": {
+    "languages": ["Java", "TypeScript", "Python"],
+    "backendTechnologies": ["Spring Boot", "JPA", "Spring Security"],
+    "frontendTechnologies": ["React", "Tailwind CSS", "Next.js"],
+    "databases": ["MariaDB", "PostgreSQL", "Redis"],
+    "infrastructure": ["Docker", "AWS", "Nginx", "CI-CD"]
+  },
+  "projects": [
+    {
+      "title": "Taskory - 일정 및 태스크 관리 웹 애플리케이션",
+      "date": "2024.01 - 현재",
+      "description": "개인 일정 및 태스크 관리를 위한 웹 애플리케이션 개발. React + TypeScript 기반 프론트엔드, Spring Boot 기반 백엔드, MariaDB 및 Redis를 활용한 데이터 관리. Docker 및 AWS를 활용한 배포."
+    },
+    {
+      "title": "LoL 챔피언 매칭 서비스",
+      "date": "2023.06 - 2023.12",
+      "description": "League of Legends 데이터를 기반으로 챔피언 매칭 및 전적 분석을 제공하는 웹 서비스. Riot Games API를 활용하여 데이터를 수집하고, 사용자 경험 최적화를 위한 추천 알고리즘 적용."
+    }
+  ],
+  "workExperience": [
+    {
+      "company": "(주)인포마인드",
+      "position": "Software Engineer",
+      "date": "2024.02 - 현재",
+      "description": "자율주행 시뮬레이션 및 해양 자율주행 스택 개발. Spring Boot 및 AWS를 활용한 백엔드 시스템 개발."
+    },
+    {
+      "company": "(주)인포마인드",
+      "position": "Software Engineer Intern",
+      "date": "2023.07 - 2023.12",
+      "description": "미국 본사의 한국 지부에서 인턴으로 근무. CI/CD 파이프라인 개선 및 데이터 처리 시스템 최적화 업무 수행."
+    }
+  ],
+  "education": [
+    {
+      "degree": "Bachelor's in Computer Science",
+      "institution": "제주대학교",
+      "date": "2019 - 2024"
+    }
+  ],
+  "certifications": [
+    {
+      "name": "정보처리기사",
+      "date": "2025.06"
+    }
+  ],
+  "activities": [
+    {
+      "title": "해외 해커톤 참가 (Google Solution Challenge)",
+      "date": "2023.03 - 2023.05",
+      "description": "Google Developers 주최 해커톤 참가. TypeScript 및 Firebase 기반 프로젝트 개발."
+    }
+  ]
+}
