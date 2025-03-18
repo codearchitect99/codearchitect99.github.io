@@ -2,6 +2,7 @@ import {useState} from "react";
 import {Activity, BasicInfo, Certification, Education, Project, Skills, WorkExperience} from "./resumeTypes.ts";
 import resume from "./resume.json";
 import {FaBlogger, FaEnvelope, FaExternalLinkAlt, FaGithub, FaLinkedin} from "react-icons/fa";
+import profile from "/src/assets/profile.jpg";
 
 export const Resume = () => {
 	const [basicInfo] = useState<BasicInfo>(resume.basicInfo);
@@ -47,7 +48,7 @@ export const Resume = () => {
 					</div>
 					<div className="w-1/4 flex justify-center items-center">
 						<img
-							src="/src/assets/profile.jpg"
+							src={profile}
 							alt="Profile"
 							className="w-32 h-36 rounded-full shadow-md flex-shrink-0"
 						/>
