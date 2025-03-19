@@ -1,2 +1,14 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+@layer components {
+    .text-contents-title {
+        @apply text-base font-medium
+    }
+    .text-contents-caption {
+        @apply text-gray-600 dark:text-gray-300 text-xs
+    }
+    .text-contents-description {
+        @apply text-gray-700 dark:text-white mt-1 text-sm
+    }
+}

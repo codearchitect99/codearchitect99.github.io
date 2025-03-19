@@ -123,11 +123,9 @@ export const Resume = () => {
 						<div className="w-3/4 space-y-1">
 							{projects.map((project: Project, index: number) => (
 								<div key={`project-${index}`} className="border-b border-gray-300 border-dashed">
-									<p className="text-base font-medium">{project.title}</p>
-									<p className="text-gray-600 dark:text-gray-300 text-xs">{project.date}</p>
-									<p className="text-gray-700 dark:text-gray-300 mt-1 text-sm">
-										{project.description}
-									</p>
+									<p className="text-contents-title">{project.title}</p>
+									<p className="text-contents-caption">{project.date}</p>
+									<p className="text-contents-description">{project.description}</p>
 								</div>
 							))}
 						</div>
@@ -143,13 +141,9 @@ export const Resume = () => {
 						<div className="w-3/4 space-y-1">
 							{workExperience.map((workExperience: WorkExperience, index: number) => (
 								<div key={`workExperience-${index}`} className="border-b border-gray-300 border-dashed">
-									<div className="flex space-x-1">
-										<p className="text-base font-medium">{workExperience.company}</p>
-										<p>-</p>
-										<p className="text-base font-medium">{workExperience.position}</p>
-									</div>
-									<p className="text-gray-600 dark:text-gray-300 text-xs">{workExperience.date}</p>
-									<p className="text-gray-700 dark:text-gray-300 text-sm mt-2">{workExperience.description}</p>
+									<p className="text-contents-title">{workExperience.company}-{workExperience.position}</p>
+									<p className="text-contents-caption">{workExperience.date}</p>
+									<p className="text-contents-description">{workExperience.description}</p>
 								</div>
 							))}
 						</div>
@@ -165,12 +159,8 @@ export const Resume = () => {
 						<div className="w-3/4 space-y-1">
 							{education.map((education: Education, index: number) => (
 								<div key={`education-${index}`} className="border-b border-gray-300 border-dashed">
-									<div className="flex space-x-1">
-										<p className="text-base font-medium">{education.institution}</p>
-										<p>-</p>
-										<p className="text-base font-medium">{education.degree}</p>
-									</div>
-									<p className="text-gray-600 dark:text-gray-300 text-xs">{education.date}</p>
+									<p className="text-contents-title">{education.institution}-{education.degree}</p>
+									<p className="text-contents-caption">{education.date}</p>
 								</div>
 							))}
 						
@@ -187,8 +177,8 @@ export const Resume = () => {
 						<div className="w-3/4 space-y-1">
 							{certifications.map((certification: Certification, index) => (
 								<div key={`certification-${index}`} className="border-b border-gray-300 border-dashed">
-									<p className="text-base font-medium">{certification.name}</p>
-									<p className="text-gray-600 dark:text-gray-300 text-xs">{certification.date}</p>
+									<p className="text-contents-title">{certification.name}</p>
+									<p className="text-contents-caption">{certification.date}</p>
 								</div>
 							))}
 						</div>
@@ -204,9 +194,9 @@ export const Resume = () => {
 						<div className="w-3/4 space-y-1">
 							{activities.map((activity: Activity, index: number) => (
 								<div key={`activity-${index}`} className="border-b border-gray-300 border-dashed">
-									<p className="text-base font-medium">{activity.title}</p>
-									<p className="text-gray-600 dark:text-gray-300 text-xs">{activity.date}</p>
-									<p className="text-gray-700 dark:text-gray-300 mt-1 text-sm">{activity.description}</p>
+									<p className="text-contents-title">{activity.title}</p>
+									<p className="text-contents-caption">{activity.date}</p>
+									<p className="text-contents-description">{activity.description}</p>
 								</div>
 							))}
 						</div>
