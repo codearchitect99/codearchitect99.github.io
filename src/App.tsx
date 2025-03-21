@@ -8,7 +8,7 @@ const App: React.FC = () => {
   return (
     <Router>
       <nav>
-        <Link to="/resume">
+        <Link to="/resumeData">
           <button className="btn">resume</button>
         </Link>
       </nav>

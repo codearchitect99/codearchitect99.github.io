@@ -1,112 +1,133 @@
 import {useState} from "react";
 import {Activity, BasicInfo, Certification, Education, Project, Skills, WorkExperience} from "./resumeTypes.ts";
-import resume from "./resume.json";
 import {FaBlogger, FaEnvelope, FaExternalLinkAlt, FaGithub, FaLinkedin} from "react-icons/fa";
 import profile from "/src/assets/profile.jpg";
+import {resumeData} from "./resumeData.ts";
+import React from "react";
 
 export const Resume = () => {
-	const [basicInfo] = useState<BasicInfo>(resume.basicInfo);
-	const [skills] = useState<Skills>(resume.skills);
-	const [projects] = useState<Project[]>(resume.projects);
-	const [workExperience] = useState<WorkExperience[]>(resume.workExperience);
-	const [education] = useState<Education[]>(resume.education);
-	const [certifications] = useState<Certification[]>(resume.certifications);
-	const [activities] = useState<Activity[]>(resume.activities);
+	const [basicInfo] = useState<BasicInfo>(resumeData.basicInfo);
+	const [skills] = useState<Skills>(resumeData.skills);
+	const [projects] = useState<Project[]>(resumeData.projects);
+	const [workExperience] = useState<WorkExperience[]>(resumeData.workExperience);
+	const [education] = useState<Education[]>(resumeData.education);
+	const [certifications] = useState<Certification[]>(resumeData.certifications);
+	const [activities] = useState<Activity[]>(resumeData.activities);
 	
 	return (
-		<div className="min-h-screen bg-gray-100 dark:bg-gray-900 flex justify-center py-4">
-			<div className="w-full max-w-4xl shadow-lg rounded-lg p-8 flex flex-col gap-4 bg-gray-100 dark:bg-gray-800">
-				{/* 기본 정보 */}
-				<section id="basic_info" className="border-b border-gray-400 pb-2 flex gap-4">
-					<div className="w-3/4">
-						<h1 className="text-black dark:text-white text-3xl font-bold">{basicInfo.name}</h1>
-						<p className="text-gray-600 dark:text-gray-300  text-base">{basicInfo.job}</p>
-						<div className="mt-2 space-x-4 text-sm flex items-start flex-wrap">
-							<a href={basicInfo.github} target="_blank" rel="noopener noreferrer"
-							   className="text-blue-600 hover:underline flex items-center gap-1">
-								<FaGithub/> GitHub
-							</a>
-							<a href={basicInfo.portfolio} target="_blank" rel="noopener noreferrer"
-							   className="text-blue-600 hover:underline flex items-center gap-1">
-								<FaExternalLinkAlt/> 포트폴리오
-							</a>
-							<a href={basicInfo.linkedin} target="_blank" rel="noopener noreferrer"
-							   className="text-blue-600 hover:underline flex items-center gap-1">
-								<FaLinkedin/> LinkedIn
-							</a>
-							<a href={basicInfo.blog} target="_blank" rel="noopener noreferrer"
-							   className="text-blue-600 hover:underline flex items-center gap-1">
-								<FaBlogger/> 기술 블로그
-							</a>
+		<div className="min-h-screen bg-gray-200 dark:bg-gray-900 flex justify-center py-4">
+			<div className="w-full max-w-4xl shadow-lg rounded-lg p-8 flex flex-col gap-4 bg-white dark:bg-gray-800">
+				{/* Basic Info */}
+				<section id="basic_info" className="border-b border-gray-400 pb-2 flex gap-6">
+					<div className="w-4/5">
+						<h1 className="text-black dark:text-white text-4xl font-bold">
+							{basicInfo.name}
+						</h1>
+						<p className="text-gray-600 dark:text-gray-300 text-xl py-1">
+							{basicInfo.job}
+						</p>
+						<div className="mt-2 space-x-4 text-base flex items-start flex-wrap">
+							{basicInfo.github && (
+								<a
+									href={basicInfo.github}
+									target="_blank"
+									rel="noopener noreferrer"
+									className="text-blue-600 hover:underline flex items-center gap-1"
+								>
+									<FaGithub/> GitHub
+								</a>
+							)}
+							{basicInfo.portfolio && (
+								<a
+									href={basicInfo.portfolio}
+									target="_blank"
+									rel="noopener noreferrer"
+									className="text-blue-600 hover:underline flex items-center gap-1"
+								>
+									<FaExternalLinkAlt/> 포트폴리오
+								</a>
+							)}
+							{basicInfo.linkedin && (
+								<a
+									href={basicInfo.linkedin}
+									target="_blank"
+									rel="noopener noreferrer"
+									className="text-blue-600 hover:underline flex items-center gap-1"
+								>
+									<FaLinkedin/> LinkedIn
+								</a>
+							)}
+							{basicInfo.blog && (
+								<a
+									href={basicInfo.blog}
+									target="_blank"
+									rel="noopener noreferrer"
+									className="text-blue-600 hover:underline flex items-center gap-1"
+								>
+									<FaBlogger/> 기술 블로그
+								</a>
+							)}
 						</div>
-						<p className="text-gray-500 dark:text-gray-200  mt-1 text-sm flex items-center gap-1">
-							<FaEnvelope/> {basicInfo.email}
-						</p>
-						<p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed mt-2">
-							{basicInfo.about}
-						</p>
+						{basicInfo.email && (
+							<p className="text-gray-500 dark:text-gray-200 mt-1 text-base flex items-center gap-1">
+								<FaEnvelope/> {basicInfo.email}
+							</p>
+						)}
+						{basicInfo.about && (
+							<p className="text-contents-description leading-relaxed mt-2">
+								{basicInfo.about.split('\n').map((line, idx) => (
+									<React.Fragment key={idx}>
+										{line}
+										<br />
+									</React.Fragment>
+								))}
+							</p>
+						)}
 					</div>
-					<div className="w-1/4 flex justify-center items-center">
-						<img
-							src={profile}
-							alt="Profile"
-							className="w-32 h-36 rounded-full shadow-md flex-shrink-0"
-						/>
-					</div>
+					{profile && (
+						<div className="w-1/5 flex justify-center items-center">
+							<img
+								src={profile}
+								alt="Profile"
+								className="w-52 h-52 rounded-full shadow-2xl flex-shrink-0"
+							/>
+						</div>
+					)}
 				</section>
 				
+				{/* Skills */}
 				<section id="skills" className="border-b border-gray-400 pb-2 flex gap-4">
-					<div className="w-1/4 flex flex-col items-end">
+					<div className="w-1/5 flex flex-col items-end">
 						<h2 className="text-lg font-semibold">기술 스택</h2>
 						<p className="text-gray-500 dark:text-gray-200 text-sm">Skills</p>
 					</div>
-					<div className="text-gray-700 dark:text-gray-300 text-sm w-3/4">
-						{skills.languages.length > 0 && (
+					<div className="text-gray-700 dark:text-gray-300 text-sm w-4/5">
+						{skills.backend.length > 0 && (
 							<div className="flex space-x-1">
-								<p>Language:</p>
+								<p className={"text-contents-description font-semibold"}>Backend:</p>
 								<div className="flex space-x-1">
-									{skills.languages.map((value: string, index: number) => (
-										<p key={`language-${index}`}>{value}</p>
+									{skills.backend.map((value: string, index: number) => (
+										<p key={`backend-${index}`} className={"text-contents-description badge-skill"}>{value}</p>
 									))}
 								</div>
 							</div>
 						)}
-						{skills.backendTechnologies.length > 0 && (
+						{skills.front.length > 0 && (
 							<div className="flex space-x-1">
-								<p>Backend:</p>
+								<p className={"text-contents-description font-semibold"}>Frontend:</p>
 								<div className="flex space-x-1">
-									{skills.backendTechnologies.map((value: string, index: number) => (
-										<p key={`backend-${index}`}>{value}</p>
+									{skills.front.map((value: string, index: number) => (
+										<p key={`front-${index}`} className={"text-contents-description badge-skill"}>{value}</p>
 									))}
 								</div>
 							</div>
 						)}
-						{skills.frontendTechnologies.length > 0 && (
+						{skills.infra.length > 0 && (
 							<div className="flex space-x-1">
-								<p>Frontend:</p>
+								<p className={"text-contents-description font-semibold"}>Infra:</p>
 								<div className="flex space-x-1">
-									{skills.frontendTechnologies.map((value: string, index: number) => (
-										<p key={`front-${index}`}>{value}</p>
-									))}
-								</div>
-							</div>
-						)}
-						{skills.databases.length > 0 && (
-							<div className="flex space-x-1">
-								<p>Database:</p>
-								<div className="flex space-x-1">
-									{skills.databases.map((value: string, index: number) => (
-										<p key={`database-${index}`}>{value}</p>
-									))}
-								</div>
-							</div>
-						)}
-						{skills.infrastructure.length > 0 && (
-							<div className="flex space-x-1">
-								<p>Infra:</p>
-								<div className="flex space-x-1">
-									{skills.infrastructure.map((value: string, index: number) => (
-										<p key={`infra-${index}`}>{value}</p>
+									{skills.infra.map((value: string, index: number) => (
+										<p key={`infra-${index}`} className={"text-contents-description badge-skill"}>{value}</p>
 									))}
 								</div>
 							</div>
@@ -114,53 +135,112 @@ export const Resume = () => {
 					</div>
 				</section>
 				
-				{projects.length > 0 && (
-					<section id="projects" className="border-b border-gray-400 pb-2 flex gap-4">
-						<div className="w-1/4 flex flex-col items-end">
-							<h2 className="text-lg font-semibold">프로젝트 경험</h2>
-							<p className="text-gray-500 dark:text-gray-200 text-sm">Projects</p>
-						</div>
-						<div className="w-3/4 space-y-1">
-							{projects.map((project: Project, index: number) => (
-								<div key={`project-${index}`} className="border-b border-gray-300 border-dashed">
-									<p className="text-contents-title">{project.title}</p>
-									<p className="text-contents-caption">{project.date}</p>
-									<p className="text-contents-description">{project.description}</p>
-								</div>
-							))}
-						</div>
-					</section>
-				)}
-				
+				{/* Work experiences */}
 				{workExperience.length > 0 && (
 					<section id="experience" className="border-b border-gray-400 pb-2 flex gap-4">
-						<div className="w-1/4 flex flex-col items-end">
+						<div className="w-1/5 flex flex-col items-end">
 							<h2 className="text-lg font-semibold">인턴 & 실무 경험</h2>
 							<p className="text-gray-500 dark:text-gray-200 text-sm">Work Experience</p>
 						</div>
-						<div className="w-3/4 space-y-1">
-							{workExperience.map((workExperience: WorkExperience, index: number) => (
-								<div key={`workExperience-${index}`} className="border-b border-gray-300 border-dashed">
-									<p className="text-contents-title">{workExperience.company}-{workExperience.position}</p>
-									<p className="text-contents-caption">{workExperience.date}</p>
-									<p className="text-contents-description">{workExperience.description}</p>
+						<div className="w-4/5 space-y-1">
+							{workExperience.map((work: WorkExperience, index: number) => (
+								<div key={`work-${index}`} className="border-b border-gray-300 border-dashed pb-2">
+									<p className="text-contents-title">{work.company} - {work.position}</p>
+									<p className="text-contents-caption">{work.date}</p>
+									<ul className="list-disc pl-5 text-contents-description whitespace-pre-line">
+										{work.description.map((value: string, idx: number) => (
+											<li key={`work-desc-${index}-${idx}`}>{value}</li>
+										))}
+									</ul>
 								</div>
 							))}
 						</div>
 					</section>
 				)}
 				
+				
+				{/* Projects */}
+				{projects.length > 0 && (
+					<section id="projects" className="border-b border-gray-400 pb-2 flex gap-4">
+						<div className="w-1/5 flex flex-col items-end">
+							<h2 className="text-lg font-semibold">프로젝트 경험</h2>
+							<p className="text-gray-500 dark:text-gray-200 text-sm">Projects</p>
+						</div>
+						<div className="w-4/5 space-y-1">
+							{projects.map((project: Project, index: number) => (
+								<div key={`project-${index}`} className="border-b border-gray-300 border-dashed pb-2">
+									<p className="text-contents-title">{project.title} | {project.project_type} - {project.sub_title}</p>
+									<p className="text-contents-caption">{project.date}</p>
+									
+									<ul className="list-disc pl-5 text-contents-description whitespace-pre-line">
+										{project.description.map((value: string, idx: number) => (
+											<li key={`project-desc-${index}-${idx}`}>{value}</li>
+										))}
+									</ul>
+									
+									{project.contribution.length > 0 && (
+										<>
+											<p className="text-contents-description font-medium">주요 역할</p>
+											<ul className="list-disc pl-5 text-contents-description whitespace-pre-line">
+												{project.contribution.map((value: string, idx: number) => (
+													<li key={`project-contrib-${index}-${idx}`}>{value}</li>
+												))}
+											</ul>
+										</>
+									)}
+								</div>
+							))}
+						</div>
+					</section>
+				)}
+				
+				{/* Activities */}
+				{activities.length > 0 && (
+					<section id="activity" className="border-b border-gray-400 pb-2 flex gap-4">
+						<div className="w-1/5 flex flex-col items-end">
+							<h2 className="text-lg font-semibold">활동</h2>
+							<p className="text-gray-500 dark:text-gray-200 text-sm">Activity</p>
+						</div>
+						<div className="w-4/5 space-y-1">
+							{activities.map((activity: Activity, index: number) => (
+								<div key={`activity-${index}`} className="border-b border-gray-300 border-dashed pb-2">
+									<p className="text-contents-title">{activity.title}</p>
+									<p className="text-contents-caption">{activity.date}</p>
+									
+									<ul className="list-disc pl-5 text-contents-description whitespace-pre-line">
+										{activity.description.map((value: string, idx: number) => (
+											<li key={`activity-desc-${index}-${idx}`}>{value}</li>
+										))}
+									</ul>
+									
+									{activity.contribution.length > 0 && (
+										<>
+											<p className="text-contents-description font-medium">주요 역할</p>
+											<ul className="list-disc pl-5 text-contents-description whitespace-pre-line">
+												{activity.contribution.map((value: string, idx: number) => (
+													<li key={`activity-contrib-${index}-${idx}`}>{value}</li>
+												))}
+											</ul>
+										</>
+									)}
+								</div>
+							))}
+						</div>
+					</section>
+				)}
+				
+				{/* Education */}
 				{education.length > 0 && (
 					<section id="education" className="border-b border-gray-400 pb-2 flex gap-4">
-						<div className="w-1/4 flex flex-col items-end">
+						<div className="w-1/5 flex flex-col items-end">
 							<h2 className="text-lg font-semibold">교육 & 학력</h2>
 							<p className="text-gray-500 dark:text-gray-200 text-sm">Education</p>
 						</div>
-						<div className="w-3/4 space-y-1">
-							{education.map((education: Education, index: number) => (
-								<div key={`education-${index}`} className="border-b border-gray-300 border-dashed">
-									<p className="text-contents-title">{education.institution}-{education.degree}</p>
-									<p className="text-contents-caption">{education.date}</p>
+						<div className="w-4/5 space-y-1">
+							{education.map((edu: Education, index: number) => (
+								<div key={`education-${index}`} className="border-b border-gray-300 border-dashed pb-2">
+									<p className="text-contents-title">{edu.institution} - {edu.degree}</p>
+									<p className="text-contents-caption">{edu.date}</p>
 								</div>
 							))}
 						
@@ -168,40 +248,25 @@ export const Resume = () => {
 					</section>
 				)}
 				
+				{/* Certifications */}
 				{certifications.length > 0 && (
 					<section id="certifications" className="border-b border-gray-400 pb-2 flex gap-4">
-						<div className="w-1/4 flex flex-col items-end">
+						<div className="w-1/5 flex flex-col items-end">
 							<h2 className="text-lg font-semibold">자격증</h2>
 							<p className="text-gray-500 dark:text-gray-200 text-sm">Certifications</p>
 						</div>
-						<div className="w-3/4 space-y-1">
-							{certifications.map((certification: Certification, index) => (
-								<div key={`certification-${index}`} className="border-b border-gray-300 border-dashed">
-									<p className="text-contents-title">{certification.name}</p>
-									<p className="text-contents-caption">{certification.date}</p>
+						<div className="w-4/5 space-y-1">
+							{certifications.map((cert: Certification, index: number) => (
+								<div key={`certification-${index}`} className="border-b border-gray-300 border-dashed pb-2">
+									<p className="text-contents-title">{cert.name}</p>
+									<p className="text-contents-caption">{cert.date}</p>
 								</div>
 							))}
 						</div>
 					</section>
 				)}
-				
-				{activities.length > 0 && (
-					<section id="activity" className="border-b border-gray-400 pb-2 flex gap-4">
-						<div className="w-1/4 flex flex-col items-end">
-							<h2 className="text-lg font-semibold">활동</h2>
-							<p className="text-gray-500 dark:text-gray-200 text-sm">Activity</p>
-						</div>
-						<div className="w-3/4 space-y-1">
-							{activities.map((activity: Activity, index: number) => (
-								<div key={`activity-${index}`} className="border-b border-gray-300 border-dashed">
-									<p className="text-contents-title">{activity.title}</p>
-									<p className="text-contents-caption">{activity.date}</p>
-									<p className="text-contents-description">{activity.description}</p>
-								</div>
-							))}
-						</div>
-					</section>
-				)}
+			
+			
 			</div>
 		</div>
 	);
