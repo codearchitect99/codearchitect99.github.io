@@ -7,8 +7,8 @@ import { NotFound } from "./pages/notFound/NotFound.tsx";
 const App: React.FC = () => {
   return (
     <Router>
-      <nav>
-        <Link to="/resumeData">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <Link to="/resume">
           <button className="btn">resume</button>
         </Link>
       </nav>
