@@ -1,38 +1,45 @@
 export const pofolData = {
-	"project": [
+	systemDesign: [
 		{
-			"title": "Taskory",
-			"src": "/markdown/project/Taskory.md",
-		},
-		{
-			"title": "SignaHand",
-			"src": "/markdown/project/SignaHand.md",
-		},
-		{
-			"title": "TODOL",
-			"src": "/markdown/project/TODOL.md",
-		},
-		{
-			"title": "Mask-Day",
-			"src": "/markdown/project/Taskory.md",
+			title: "Taskory",
+			src: "/markdowns/taskory.md",
 		},
 	],
-	"activities": [
+	
+	uiDevelopment: [
 		{
-			"title": "MRV",
-			"src": "/markdown/project/MRV-Network.md",
+			title: "SignaHand",
+			src: "/markdowns/signahand.md",
 		},
 		{
-			"title": "Personal Tea",
-			"src": "/markdown/project/PersonalTea.md",
+			title: "MRV 탐색기 (해커톤)",
+			src: "/markdowns/mrv.md",
+		},
+	],
+	
+	systemFeature: [
+		{
+			title: "TODOL",
+			src: "/markdowns/todol.md",
 		},
 		{
-			"title": "Kakao Internship",
-			"src": "/markdown/project/Kakao-Internship.md",
+			title: "올때 마스크",
+			src: "/markdowns/mask.md",
+		},
+	],
+	
+	collaboration: [
+		{
+			title: "Personal Tea (해커톤)",
+			src: "/markdowns/personal-tea.md",
 		},
 		{
-			"title": "ICT Volunteer",
-			"src": "/markdown/project/ICT-Volunteer.md",
+			title: "카카오 인턴십",
+			src: "/markdowns/kakao.md",
 		},
-	]
-}
+		{
+			title: "월드프렌즈 ICT 봉사단",
+			src: "/markdowns/worldfriends.md",
+		},
+	],
+};
