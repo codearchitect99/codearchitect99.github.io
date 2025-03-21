@@ -7,10 +7,21 @@ import { NotFound } from "./pages/notFound/NotFound.tsx";
 const App: React.FC = () => {
   return (
     <Router>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-        <Link to="/resume">
-          <button className="btn">resume</button>
-        </Link>
+      <nav className="flex items-center justify-between px-6 py-4 bg-white dark:bg-gray-900 shadow">
+        <div className="flex space-x-4">
+          <Link
+            to="/"
+            className="px-3 py-2 rounded text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+          >
+            Home
+          </Link>
+          <Link
+            to="/resume"
+            className="px-3 py-2 rounded text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+          >
+            Resume
+          </Link>
+        </div>
       </nav>
       
       <Routes>
