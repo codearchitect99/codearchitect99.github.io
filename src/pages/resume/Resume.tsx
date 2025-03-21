@@ -124,7 +124,7 @@ export const Resume = () => {
 								values.length > 0 && (
 									<div key={key} className="flex flex-wrap gap-1 items-center">
 										<p className="font-semibold capitalize w-24">{key}:</p>
-										{values.map((value, index) => (
+										{values.map((value: string, index: number) => (
 											<span
 												key={`${key}-${index}`}
 												className="text-contents-description badge-skill"
