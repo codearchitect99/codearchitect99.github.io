@@ -5,48 +5,36 @@ import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
 import 'highlight.js/styles/github.css';
 import { pofolData } from "./pofolData.ts";
-
-interface PortfolioProject {
-	title: string;
-	src: string;
-}
-
-const ProjectCategory = ({
-	                         title,
-	                         description,
-	                         data,
-	                         selectedActivity,
-	                         setSelectedActivity,
-                         }: {
-	title: string;
-	description: string;
-	data: PortfolioProject[];
-	selectedActivity: PortfolioProject;
-	setSelectedActivity: (project: PortfolioProject) => void;
-}) => (
-	<div className="mb-8">
-		<h3 className="text-xl font-semibold mb-1">{title}</h3>
-		<p className="text-gray-600 mb-3">{description}</p>
-		<div className="flex flex-wrap gap-2">
-			{data.map((proj) => (
-				<button
-					key={proj.title}
-					onClick={() => setSelectedActivity(proj)}
-					className={`px-4 py-2 rounded-full border text-sm ${
-						selectedActivity.title === proj.title
-							? "bg-blue-600 text-white border-blue-600"
-							: "text-gray-600 border-gray-300"
-					}`}
-				>
-					{proj.title}
-				</button>
-			))}
-		</div>
-	</div>
-);
+import {PortfolioProject} from "./pofolDataTypes.ts";
+import {ProjectTabs} from "./ProjectTabs.tsx";
+import {HiOutlineMail} from "react-icons/hi";
+import {FaGithub } from "react-icons/fa";
+import {GoLocation} from "react-icons/go";
 
 export const Home = () => {
-	const [selectedActivity, setSelectedActivity] = useState<PortfolioProject>(pofolData.systemDesign[0]);
+	const categoryTabs = [
+		{
+			label: "System Design",
+			data: pofolData.systemDesign,
+		},
+		{
+			label: "UI Development",
+			data: pofolData.uiDevelopment,
+		},
+		{
+			label: "System Feature",
+			data: pofolData.systemFeature,
+		},
+		{
+			label: "Collaboration",
+			data: pofolData.collaboration,
+		},
+	];
+	
+	const allProjects = categoryTabs.flatMap((tab) => tab.data);
+	
+	const [selectedTab, setSelectedTab] = useState(-1);
+	const [selectedActivity, setSelectedActivity] = useState<PortfolioProject>(allProjects[0]);
 	const [markdownContent, setMarkdownContent] = useState("");
 	
 	useEffect(() => {
@@ -57,77 +45,111 @@ export const Home = () => {
 	}, [selectedActivity]);
 	
 	return (
-		<main className="flex flex-col items-center px-4 py-8 space-y-16">
-			<section id="hero" className="w-full max-w-3xl text-center py-12 border-b border-gray-300">
-				<h1 className="text-4xl font-bold mb-4">안녕하세요, 저는 백엔드 개발자입니다</h1>
-				<p className="text-lg text-gray-600">
-					Java, Spring 기반 백엔드와 React 기반 프론트엔드를 다루는 풀스택 개발자입니다.
-				</p>
+		<main className="flex flex-col items-center space-y-8">
+			<section
+				id="about"
+				className="w-full h-[10vh] flex items-center justify-center bg-gradient-to-b from-white via-blue-50 to-blue-300"
+			>
+				<div className="max-w-4xl text-center px-4">
+					<h1 className="text-5xl md:text-6xl font-extrabold mb-6 leading-tight text-gray-900 tracking-tight">
+      <span className="bg-gradient-to-r from-sky-500 to-blue-700 bg-clip-text text-transparent">
+       Seongwon Yang
+      </span>
+					</h1>
+					
+					{/*<p className="text-gray-800 text-lg md:text-xl leading-relaxed mb-10 drop-shadow-sm">*/}
+					{/*	복잡한 시스템을 구조적으로 이해하고 흐름을 정리해 나가는 것을 좋아합니다.<br/>*/}
+					{/*	작은 기능에도 설계의 의도를 담아, 유지보수성과 확장성을 고려한 개발을 지향합니다.*/}
+					{/*</p>*/}
+				</div>
 			</section>
 			
 			<section id="about" className="w-full max-w-3xl border-b border-gray-300 pb-8">
 				<h2 className="text-2xl font-semibold mb-4">About Me</h2>
-				<p>
-					저는 Java와 Spring을 기반으로 한 백엔드 개발을 주력으로 하고 있으며, TypeScript와 React를 활용한 프론트엔드에도 익숙합니다. 복잡한 시스템 아키텍처 설계와 코드 품질에 관심이 많습니다.
+				<p className="text-gray-700 leading-relaxed">
+					복잡한 시스템을 구조적으로 이해하고, 흐름을 정리해 나가는 과정에 흥미를 느끼는 개발자입니다.
+					작은 기능 하나에도 설계의 의도를 담아 신중하게 접근하며, 유지보수성과 확장성을 고려한 안정적인 개발을 지향합니다.
+					<br /><br />
+					무엇이 왜 그렇게 동작하는지를 깊이 이해하려고 노력하며, 단순한 구현을 넘어서 원리를 탐구하는 과정을 즐깁니다.
+					아직 배워야 할 부분이 많지만, 책임감 있는 태도로 팀에 기여하며 함께 성장할 수 있는 개발자가 되고자 합니다.
+					변화에 유연하게 대응하되, 기본에 충실한 개발자가 되는 것을 목표로 하고 있습니다.
+					꾸준한 학습과 기록을 통해 개발자로서의 방향성을 단단하게 다져가고 있습니다.
 				</p>
 			</section>
 			
 			<section id="skills" className="w-full max-w-3xl border-b border-gray-300 pb-8">
 				<h2 className="text-2xl font-semibold mb-4">Skills</h2>
-				<ul className="list-disc pl-5">
-					<li>Java, Spring Boot</li>
-					<li>TypeScript, React</li>
-					<li>AWS, Docker, MariaDB</li>
-					<li>CI/CD, GitHub Actions, CircleCI</li>
+				<ul className="list-disc pl-5 space-y-1 text-gray-700">
+					<li>
+						<strong>Language & Backend</strong>: Java (Corretto 21), Spring Boot 3.x, JPA (Hibernate), Gradle, REST API
+					</li>
+					<li>
+						<strong>Frontend</strong>: TypeScript, React (v19), Tailwind CSS (v4), HTML/CSS
+					</li>
+					<li>
+						<strong>Database</strong>: MariaDB, MySQL
+					</li>
+					<li>
+						<strong>DevOps & Infra</strong>: Docker, AWS EC2, Vercel
+					</li>
+					<li>
+						<strong>Testing</strong>: JUnit
+					</li>
+					<li>
+						<strong>Tools & Collaboration</strong>: Git, GitHub, GitHub Projects, GitHub Docs, Figma, Jira, Confluence, Agit
+					</li>
 				</ul>
 			</section>
 			
 			<section id="projects" className="w-full max-w-3xl border-b border-gray-300 pb-8">
 				<h2 className="text-2xl font-semibold mb-4">Projects</h2>
 				
-				<ProjectCategory
-					title="⚙️ 서비스 구조 설계 및 운영 (System Design & Service Operation)"
-					description="데이터 모델링부터 배포까지, 전체 서비스 구조를 직접 설계하고 운영한 경험"
-					data={pofolData.systemDesign}
+				<ProjectTabs
+					tabs={categoryTabs}
+					selectedTab={selectedTab}
+					setSelectedTab={setSelectedTab}
 					selectedActivity={selectedActivity}
 					setSelectedActivity={setSelectedActivity}
 				/>
 				
-				<ProjectCategory
-					title="🎨 사용자 경험 중심의 화면 구현 (User-Centered Interface Development)"
-					description="직관적인 UI 설계와 실제 사용 흐름을 고려한 인터페이스 구현 경험"
-					data={pofolData.uiDevelopment}
-					selectedActivity={selectedActivity}
-					setSelectedActivity={setSelectedActivity}
-				/>
-				
-				<ProjectCategory
-					title="🔧 기능 중심의 시스템 개발 (Feature-Oriented System Development)"
-					description="사용자 중심 기능을 안정적이고 신뢰성 있게 구현한 경험"
-					data={pofolData.systemFeature}
-					selectedActivity={selectedActivity}
-					setSelectedActivity={setSelectedActivity}
-				/>
-				
-				<ProjectCategory
-					title="🤝 협업 및 커뮤니케이션 (Collaboration & Communication)"
-					description="다양한 환경에서의 협업 경험과 커뮤니케이션 역량"
-					data={pofolData.collaboration}
-					selectedActivity={selectedActivity}
-					setSelectedActivity={setSelectedActivity}
-				/>
-				
-				<div className="prose prose-blue max-w-none">
+				<div className="prose prose-blue max-w-none mt-6">
 					<ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>
 						{markdownContent}
 					</ReactMarkdown>
 				</div>
 			</section>
 			
-			<section id="contact" className="w-full max-w-3xl text-center pb-8">
-				<h2 className="text-2xl font-semibold mb-4">Contact</h2>
-				<p>📧 your.email@example.com</p>
-				<p>🔗 <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">GitHub</a></p>
+			<section id="contact" className="w-full max-w-3xl mx-auto text-center px-4 py-12">
+				<h2 className="text-2xl font-semibold mb-4">Contacts</h2>
+				
+				<div className="space-y-4 text-lg text-gray-700 dark:text-gray-300">
+					<p className="flex items-center justify-center gap-2">
+						<HiOutlineMail className="text-xl text-blue-600" />
+						<a href="mailto:ysw991106@gmail.com" className="hover:underline hover:text-blue-800 transition">
+							ysw991106@gmail.com
+						</a>
+					</p>
+					<p className="flex items-center justify-center gap-2">
+						<FaGithub className="text-xl text-gray-800 dark:text-white" />
+						<a href="https://github.com/codearchitect99" target="_blank" rel="noopener noreferrer" className="hover:underline hover:text-blue-800 transition">
+							GitHub
+						</a>
+					</p>
+					{/*<p className="flex items-center justify-center gap-2">*/}
+					{/*	<FaLinkedin className="text-xl text-blue-700" />*/}
+					{/*	<a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer" className="hover:underline hover:text-blue-800 transition">*/}
+					{/*		LinkedIn*/}
+					{/*	</a>*/}
+					{/*</p>*/}
+					<p className="flex items-center justify-center gap-2">
+						<GoLocation className="text-xl text-red-500" />
+						Jeju, South Korea
+					</p>
+				</div>
+				
+				<p className="mt-6 text-gray-600 dark:text-gray-400">
+					Feel free to reach out if you’d like to collaborate or just say hi!
+				</p>
 			</section>
 		</main>
 	);

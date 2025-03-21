@@ -123,7 +123,7 @@ export const Resume = () => {
 							{Object.entries(skills).map(([key, values]) => (
 								values.length > 0 && (
 									<div key={key} className="flex flex-wrap gap-1 items-center">
-										<p className="font-semibold capitalize w-24">{key}:</p>
+										<p className="font-semibold capitalize w-24 flex justify-end">{key}:</p>
 										{values.map((value: string, index: number) => (
 											<span
 												key={`${key}-${index}`}
