@@ -4,6 +4,8 @@
 
 **형태**: 팀 프로젝트 (해커톤)
 
+**URLS**: https://github.com/TeamMarine
+
 **수상 내역**: 특별상 수상
 
 **기술 스택**: React, JavaScript, Blockchain (기반 아키텍처)
