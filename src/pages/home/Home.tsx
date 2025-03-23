@@ -10,11 +10,11 @@ import {ProjectTabs} from "./ProjectTabs.tsx";
 import {HiOutlineMail} from "react-icons/hi";
 import {FaGithub } from "react-icons/fa";
 import {GoLocation} from "react-icons/go";
-// import {ImagePreviewModal} from "./ImagePreviewModal.tsx";
+import {ImagePreviewModal} from "./ImagePreviewModal.tsx";
 
 export const Home = () => {
-	// const imageModules = import.meta.glob('/src/assets/images/project/kakao/*', { eager: true, as: 'url' });
-	// const imageUrls = Object.values(imageModules) as string[];
+	const imageModules = import.meta.glob('/src/assets/images/project/kakao/*', { eager: true, as: 'url' });
+	const imageUrls = Object.values(imageModules) as string[];
 	
 	const categoryTabs = [
 		{
@@ -139,7 +139,7 @@ export const Home = () => {
 				
 				<div className="prose prose-blue max-w-none mt-6">
 					
-					{/*<ImagePreviewModal imagePaths={imageUrls}/>*/}
+					<ImagePreviewModal imagePaths={imageUrls}/>
 					<ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>
 						{markdownContent}
 					</ReactMarkdown>

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 interface ImagePreviewModalProps {
 	imagePaths: string[];
@@ -6,74 +6,90 @@ interface ImagePreviewModalProps {
 
 export const ImagePreviewModal = ({ imagePaths }: ImagePreviewModalProps) => {
 	const [isOpen, setIsOpen] = useState(false);
-	const [selectedImage, setSelectedImage] = useState<string | null>(null);
 	const [currentIndex, setCurrentIndex] = useState(0);
+	const modalRef = useRef<HTMLDialogElement>(null);
 	
-	const openModal = (imageUrl: string, index: number) => {
-		setSelectedImage(imageUrl);
+	const openModal = (index: number) => {
 		setCurrentIndex(index);
 		setIsOpen(true);
+		modalRef.current?.showModal();
 	};
 	
 	const closeModal = () => {
 		setIsOpen(false);
-		setSelectedImage(null);
+		modalRef.current?.close();
 	};
 	
 	const showPrev = () => {
-		const newIndex = (currentIndex - 1 + imagePaths.length) % imagePaths.length;
-		setSelectedImage(imagePaths[newIndex]);
-		setCurrentIndex(newIndex);
+		setCurrentIndex((currentIndex - 1 + imagePaths.length) % imagePaths.length);
 	};
 	
 	const showNext = () => {
-		const newIndex = (currentIndex + 1) % imagePaths.length;
-		setSelectedImage(imagePaths[newIndex]);
-		setCurrentIndex(newIndex);
+		setCurrentIndex((currentIndex + 1) % imagePaths.length);
 	};
 	
+	useEffect(() => {
+		const modalElement = modalRef.current;
+		const handleOutsideClick = (e: MouseEvent) => {
+			if (e.target === modalElement) closeModal();
+		};
+		
+		modalElement?.addEventListener('click', handleOutsideClick);
+		return () => modalElement?.removeEventListener('click', handleOutsideClick);
+	}, []);
+	
 	return (
-		<div className="p-4 grid grid-cols-2 md:grid-cols-3 gap-4">
-			{imagePaths.map((img, idx) => (
-				<img
-					key={idx}
-					src={img}
-					alt={`Preview ${idx}`}
-					className="w-full h-24 object-cover rounded-xl cursor-pointer hover:opacity-80 transition"
-					onClick={() => openModal(img, idx)}
-				/>
-			))}
+		<div className="p-4">
+			<div className="flex overflow-x-auto gap-4 pb-2">
+				{imagePaths.map((img, idx) => (
+					<img
+						key={idx}
+						src={img}
+						alt={`Preview ${idx}`}
+						className={`w-24 h-24 object-cover rounded-xl cursor-pointer hover:opacity-80 transition ${
+							currentIndex === idx && isOpen ? 'ring-4 ring-primary' : ''
+						}`}
+						onClick={() => openModal(idx)}
+					/>
+				))}
+			</div>
 			
-			{isOpen && (
-				<dialog id="image_modal" className="modal modal-open">
-					<div className="modal-box max-w-3xl bg-base-100 text-base-content relative">
-						<form method="dialog">
-							<button
-								onClick={closeModal}
-								className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
-							>
-								✕
-							</button>
-						</form>
+			<dialog ref={modalRef} className="modal">
+				<div className="modal-box max-w-full sm:max-w-4xl bg-base-100 relative p-4">
+					<button
+						onClick={closeModal}
+						className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+					>
+						✕
+					</button>
+					
+					<div className="flex items-center justify-between max-w-full overflow-hidden">
+						<button onClick={showPrev} className="btn btn-circle btn-ghost text-xl">
+							❮
+						</button>
 						
-						<div className="flex items-center justify-between">
-							<button onClick={showPrev} className="btn btn-ghost text-2xl">⟨</button>
-							{selectedImage && (
-								<img
-									src={selectedImage}
-									alt="Full View"
-									className="max-h-[80vh] object-contain rounded-box mx-4"
-								/>
-							)}
-							<button onClick={showNext} className="btn btn-ghost text-2xl">⟩</button>
+						<div className="flex-1 flex justify-center items-center">
+							<img
+								src={imagePaths[currentIndex]}
+								alt="Full View"
+								className="max-w-full max-h-[80vh] object-contain rounded-box"
+							/>
 						</div>
+						
+						<button onClick={showNext} className="btn btn-circle btn-ghost text-xl">
+							❯
+						</button>
 					</div>
 					
-					<form method="dialog" className="modal-backdrop bg-black/50 dark:bg-black/70">
-						<button onClick={closeModal}>close</button>
-					</form>
-				</dialog>
-			)}
+					<div className="text-center mt-3 text-sm text-base-content opacity-70">
+						{currentIndex + 1} / {imagePaths.length}
+					</div>
+				</div>
+				
+				<form method="dialog" className="modal-backdrop backdrop-blur-sm bg-black/30 dark:bg-black/50">
+					<button type="button" onClick={closeModal}>close</button>
+				</form>
+			</dialog>
 		</div>
 	);
 };
