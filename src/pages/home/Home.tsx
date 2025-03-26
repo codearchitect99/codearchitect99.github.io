@@ -12,10 +12,11 @@ import {FaGithub } from "react-icons/fa";
 import {GoLocation} from "react-icons/go";
 import {ImagePreviewModal} from "./ImagePreviewModal.tsx";
 import {myInfo} from "../myInfo.ts";
+import imagesByFolder from "./imageUtils.ts";
 
 export const Home = () => {
-	const imageModules = import.meta.glob('/src/assets/images/project/kakao/*', { eager: true, as: 'url' });
-	const imageUrls = Object.values(imageModules) as string[];
+	// const imageModules = import.meta.glob('/src/assets/images/project/kakao/*', { eager: true, as: 'url' });
+	// const imageUrls = Object.values(imageModules) as string[];
 	
 	const categoryTabs = [
 		{
@@ -41,12 +42,17 @@ export const Home = () => {
 	const [selectedTab, setSelectedTab] = useState(-1);
 	const [selectedActivity, setSelectedActivity] = useState<ProjectDataTypes>(allProjects[0]);
 	const [markdownContent, setMarkdownContent] = useState("");
+	const [imageUrls, setImageUrls] = useState<string[]>(imagesByFolder[selectedActivity.name]);
+	
 	
 	useEffect(() => {
 		fetch(selectedActivity.src)
 			.then((res) => res.text())
 			.then(setMarkdownContent)
 			.catch(() => setMarkdownContent("마크다운 파일을 불러오는 데 실패했습니다."));
+		
+		setImageUrls(imagesByFolder[selectedActivity.name]);
+		
 	}, [selectedActivity]);
 	
 	return (
@@ -145,8 +151,9 @@ export const Home = () => {
 					setSelectedActivity={setSelectedActivity}
 				/>
 				
+				<ImagePreviewModal imagePaths={imageUrls} />
+				
 				<div className="prose prose-blue dark:prose-invert max-w-none mt-6">
-					<ImagePreviewModal imagePaths={imageUrls} />
 					<ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>
 						{markdownContent}
 					</ReactMarkdown>

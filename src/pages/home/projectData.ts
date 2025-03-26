@@ -3,7 +3,7 @@ export const projectData = {
 		{
 			title: "Taskory",
 			src: "/markdown/project/taskory.md",
-			dir: "@/assets/image/project/taskory/"
+			name: "taskory"
 		},
 	],
 	
@@ -11,12 +11,12 @@ export const projectData = {
 		{
 			title: "SignaHand",
 			src: "/markdown/project/signahand.md",
-			dir: "@/assets/image/project/signahand/"
+			name: "signahand"
 		},
 		{
 			title: "MRV 탐색기 (해커톤)",
 			src: "/markdown/project/mrv.md",
-			dir: "@/assets/image/project/mrv/"
+			name: "mrv"
 		},
 	],
 	
@@ -24,12 +24,12 @@ export const projectData = {
 		{
 			title: "TODOL",
 			src: "/markdown/project/todol.md",
-			dir: "@/assets/image/project/todol/"
+			name: "todol"
 		},
 		{
 			title: "올때 마스크",
 			src: "/markdown/project/mask.md",
-			dir: "@/assets/image/project/mask/"
+			name: "mask"
 		},
 	],
 	
@@ -37,17 +37,17 @@ export const projectData = {
 		{
 			title: "Personal Tea (해커톤)",
 			src: "/markdown/project/personal-tea.md",
-			dir: "@/assets/image/project/personal-tea/"
+			name: "personal-tea"
 		},
 		{
 			title: "카카오 인턴십",
 			src: "/markdown/project/kakao.md",
-			dir: "@/assets/image/project/kakao/kakao/",
+			name: "kakao",
 		},
 		{
 			title: "월드프렌즈 ICT 봉사단",
 			src: "/markdown/project/worldfriends.md",
-			dir: "@/assets/image/project/worldfriends/"
+			name: "worldfriends"
 		},
 	],
 };
