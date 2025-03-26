@@ -15,8 +15,6 @@ import {myInfo} from "../myInfo.ts";
 import imagesByFolder from "./imageUtils.ts";
 
 export const Home = () => {
-	// const imageModules = import.meta.glob('/src/assets/images/project/kakao/*', { eager: true, as: 'url' });
-	// const imageUrls = Object.values(imageModules) as string[];
 	
 	const categoryTabs = [
 		{
