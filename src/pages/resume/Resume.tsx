@@ -2,11 +2,9 @@
 import { useState } from "react";
 import {
 	Activity,
-	BasicInfo,
 	Certification,
 	Education,
 	Project,
-	Skills,
 	WorkExperience,
 } from "./resumeTypes.ts";
 import {
@@ -19,10 +17,11 @@ import {
 import profile from "/src/assets/profile.jpg";
 import { resumeData } from "./resumeData.ts";
 import React from "react";
+import {myInfo} from "../myInfo.ts";
 
 export const Resume = () => {
-	const [basicInfo] = useState<BasicInfo>(resumeData.basicInfo);
-	const [skills] = useState<Skills>(resumeData.skills);
+	const [basicInfo] = useState(myInfo);
+	const [skills] = useState(myInfo.skills);
 	const [projects] = useState<Project[]>(resumeData.projects);
 	const [workExperience] = useState<WorkExperience[]>(resumeData.workExperience);
 	const [education] = useState<Education[]>(resumeData.education);
@@ -91,9 +90,9 @@ export const Resume = () => {
 								<FaEnvelope /> {basicInfo.email}
 							</p>
 						)}
-						{basicInfo.about && (
+						{basicInfo.simple_about && (
 							<p className="text-contents-description leading-relaxed mt-2">
-								{basicInfo.about.split("\n").map((line, idx) => (
+								{basicInfo.simple_about.split("\n").map((line, idx) => (
 									<React.Fragment key={idx}>
 										{line}
 										<br />

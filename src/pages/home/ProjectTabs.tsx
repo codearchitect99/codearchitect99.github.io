@@ -1,4 +1,4 @@
-import { PortfolioProject } from "./pofolDataTypes";
+import { ProjectDataTypes } from "./projectDataTypes.ts";
 
 export const ProjectTabs = ({
 	                            tabs,
@@ -7,11 +7,11 @@ export const ProjectTabs = ({
 	                            selectedActivity,
 	                            setSelectedActivity,
                             }: {
-	tabs: { label: string; data: PortfolioProject[] }[];
+	tabs: { label: string; data: ProjectDataTypes[] }[];
 	selectedTab: number;
 	setSelectedTab: (index: number) => void;
-	selectedActivity: PortfolioProject;
-	setSelectedActivity: (project: PortfolioProject) => void;
+	selectedActivity: ProjectDataTypes;
+	setSelectedActivity: (project: ProjectDataTypes) => void;
 }) => {
 	const allProjects = tabs.flatMap((tab) => tab.data);
 	

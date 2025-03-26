@@ -1,14 +1,3 @@
-export interface BasicInfo {
-	name: string;
-	job: string;
-	github: string ;
-	portfolio: string | undefined;
-	linkedin: string | undefined;
-	blog: string | undefined;
-	email: string | undefined;
-	about: string | undefined;
-}
-
 export interface Skills {
 	backend: string[];
 	front: string[];

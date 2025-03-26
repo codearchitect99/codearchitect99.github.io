@@ -4,13 +4,14 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
 import 'highlight.js/styles/github.css';
-import { pofolData } from "./pofolData.ts";
-import {PortfolioProject} from "./pofolDataTypes.ts";
+import { projectData } from "./projectData.ts";
+import {ProjectDataTypes} from "./projectDataTypes.ts";
 import {ProjectTabs} from "./ProjectTabs.tsx";
 import {HiOutlineMail} from "react-icons/hi";
 import {FaGithub } from "react-icons/fa";
 import {GoLocation} from "react-icons/go";
 import {ImagePreviewModal} from "./ImagePreviewModal.tsx";
+import {myInfo} from "../myInfo.ts";
 
 export const Home = () => {
 	const imageModules = import.meta.glob('/src/assets/images/project/kakao/*', { eager: true, as: 'url' });
@@ -19,26 +20,26 @@ export const Home = () => {
 	const categoryTabs = [
 		{
 			label: "System Design",
-			data: pofolData.systemDesign,
+			data: projectData.systemDesign,
 		},
 		{
 			label: "UI Development",
-			data: pofolData.uiDevelopment,
+			data: projectData.uiDevelopment,
 		},
 		{
 			label: "System Feature",
-			data: pofolData.systemFeature,
+			data: projectData.systemFeature,
 		},
 		{
 			label: "Collaboration",
-			data: pofolData.collaboration,
+			data: projectData.collaboration,
 		},
 	];
 	
 	const allProjects = categoryTabs.flatMap((tab) => tab.data);
 	
 	const [selectedTab, setSelectedTab] = useState(-1);
-	const [selectedActivity, setSelectedActivity] = useState<PortfolioProject>(allProjects[0]);
+	const [selectedActivity, setSelectedActivity] = useState<ProjectDataTypes>(allProjects[0]);
 	const [markdownContent, setMarkdownContent] = useState("");
 	
 	useEffect(() => {
@@ -62,23 +63,23 @@ export const Home = () => {
 						<div className="flex justify-start gap-1">
 							<HiOutlineMail className="text-xl text-blue-600 dark:text-blue-400" />
 							<a
-								href="mailto:ysw991106@gmail.com"
+								href={`mailto:${myInfo.email}`}
 								className="hover:underline hover:text-blue-800 dark:hover:text-blue-300 transition"
 							>
-								ysw991106@gmail.com
+								{myInfo.email}
 							</a>
 						</div>
 						<div className="flex justify-start gap-1">
 							<p className="flex items-center justify-center gap-2">
 								<GoLocation className="text-xl text-red-500 dark:text-red-400" />
-								Jeju, South Korea
+								{myInfo.location}
 							</p>
 						</div>
 						<div className="flex justify-start gap-1">
 							<p className="flex items-center justify-center gap-2">
 								<FaGithub className="text-xl text-gray-800 dark:text-white" />
 								<a
-									href="https://github.com/codearchitect99"
+									href={myInfo.github}
 									target="_blank"
 									rel="noopener noreferrer"
 									className="hover:underline hover:text-blue-800 dark:hover:text-blue-300 transition"
@@ -92,7 +93,7 @@ export const Home = () => {
 					<section id="name" className="text-center">
 						<h1 className="text-5xl md:text-6xl font-extrabold leading-tight text-gray-900 dark:text-white tracking-tight">
 							<p className="bg-gradient-to-r from-sky-500 to-blue-700 bg-clip-text text-transparent">
-								Seongwon Yang
+								{myInfo.eng_name}
 							</p>
 						</h1>
 					</section>
@@ -103,16 +104,9 @@ export const Home = () => {
 				id="about"
 				className="w-full max-w-3xl border-b border-gray-300 dark:border-gray-700 pb-8 px-4"
 			>
-				<h2 className="text-2xl font-semibold mb-4 dark:text-white">About Me</h2>
+				<h2 className="text-h2">About Me</h2>
 				<p className="text-gray-700 dark:text-gray-300 leading-relaxed">
-					복잡한 시스템을 구조적으로 이해하고, 흐름을 정리해 나가는 과정에 흥미를 느끼는 개발자입니다.
-					작은 기능 하나에도 설계의 의도를 담아 신중하게 접근하며, 유지보수성과 확장성을 고려한 안정적인 개발을 지향합니다.
-					<br />
-					<br />
-					무엇이 왜 그렇게 동작하는지를 깊이 이해하려고 노력하며, 단순한 구현을 넘어서 원리를 탐구하는 과정을 즐깁니다.
-					아직 배워야 할 부분이 많지만, 책임감 있는 태도로 팀에 기여하며 함께 성장할 수 있는 개발자가 되고자 합니다.
-					변화에 유연하게 대응하되, 기본에 충실한 개발자가 되는 것을 목표로 하고 있습니다.
-					꾸준한 학습과 기록을 통해 개발자로서의 방향성을 단단하게 다져가고 있습니다.
+					{myInfo.about}
 				</p>
 			</section>
 			
@@ -120,25 +114,19 @@ export const Home = () => {
 				id="skills"
 				className="w-full max-w-3xl border-b border-gray-300 dark:border-gray-700 pb-8 px-4"
 			>
-				<h2 className="text-2xl font-semibold mb-4 dark:text-white">Skills</h2>
+				<h2 className="text-h2">Skills</h2>
 				<ul className="list-disc pl-5 space-y-1 text-gray-700 dark:text-gray-300">
 					<li>
-						<strong>Language & Backend</strong>: Java (Corretto 21), Spring Boot 3.x, JPA (Hibernate), Gradle, REST API
+						<strong>Backend: </strong>{myInfo.skills.backend.values()}
 					</li>
 					<li>
-						<strong>Frontend</strong>: TypeScript, React (v19), Tailwind CSS (v4), HTML/CSS
+						<strong>Frontend: </strong>{myInfo.skills.front.values()}
 					</li>
 					<li>
-						<strong>Database</strong>: MariaDB, MySQL
+						<strong>Infra: </strong>{myInfo.skills.infra.values()}
 					</li>
 					<li>
-						<strong>DevOps & Infra</strong>: Docker, AWS EC2, Vercel
-					</li>
-					<li>
-						<strong>Testing</strong>: JUnit
-					</li>
-					<li>
-						<strong>Tools & Collaboration</strong>: Git, GitHub, GitHub Projects, GitHub Docs, Figma, Jira, Confluence, Agit
+						<strong>Development support tools: </strong>{myInfo.skills.etc.values()}
 					</li>
 				</ul>
 			</section>
@@ -147,7 +135,7 @@ export const Home = () => {
 				id="projects"
 				className="w-full max-w-3xl border-b border-gray-300 dark:border-gray-700 pb-8 px-4"
 			>
-				<h2 className="text-2xl font-semibold mb-4 dark:text-white">Projects</h2>
+				<h2 className="text-h2">Projects</h2>
 				
 				<ProjectTabs
 					tabs={categoryTabs}
