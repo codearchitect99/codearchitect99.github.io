@@ -24,10 +24,10 @@ export const ProjectTabs = ({
 						setSelectedTab(-1);
 						setSelectedActivity(allProjects[0]);
 					}}
-					className={`px-2 py-1 rounded-xl border-2 text-sm font-bold transition ${
+					className={`project-tab ${
 						selectedTab === -1
-							? "bg-blue-600 text-white border-blue-600"
-							: "text-gray-700 border-gray-300 hover:border-gray-400"
+							? "project-tab-selected"
+							: "project-tab-unselected"
 					}`}
 				>
 					All
@@ -39,10 +39,10 @@ export const ProjectTabs = ({
 							setSelectedTab(idx);
 							setSelectedActivity(tab.data[0]);
 						}}
-						className={`px-2 py-1.5 rounded-xl border-2 text-sm font-bold transition ${
+						className={`project-tab ${
 							selectedTab === idx
-								? "bg-blue-600 text-white border-blue-600"
-								: "text-gray-700 border-gray-300 hover:border-gray-400"
+								? "project-tab-selected"
+								: "project-tab-unselected"
 						}`}
 					>
 						{tab.label}
@@ -56,10 +56,10 @@ export const ProjectTabs = ({
 					<button
 						key={proj.title}
 						onClick={() => setSelectedActivity(proj)}
-						className={`px-1.5 py-1 rounded-full border text-sm transition ${
+						className={`project-tab ${
 							selectedActivity.title === proj.title
-								? "bg-blue-600 text-white border-blue-600"
-								: "text-gray-600 border-gray-300 hover:border-gray-400"
+								? "project-tab-selected"
+								: "project-tab-unselected"
 						}`}
 					>
 						{proj.title}
