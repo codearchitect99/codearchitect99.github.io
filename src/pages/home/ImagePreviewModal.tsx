@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import { FaPlay } from "react-icons/fa";
 
 interface ImagePreviewModalProps {
 	imagePaths: string[];
@@ -42,20 +43,31 @@ export const ImagePreviewModal = ({ imagePaths }: ImagePreviewModalProps) => {
 	
 	return (
 		<div className="py-4">
-			{imagePaths && (
-				<>
 					<p className="text-contents-title">Images</p>
 					<div>
 						<div className="grid grid-cols-6 gap-2 py-2">
-							{visibleImages.map((img, idx) => (
-								<img
-									key={idx}
-									src={img}
-									alt={`Preview ${idx}`}
-									className="w-24 h-24 object-cover rounded-xl hover:opacity-80 transition block"
-									onClick={() => openModal(idx)}
-								/>
-							))}
+							{visibleImages.map((file, idx) => {
+								const isImage = /\.(jpg|jpeg|png|gif|webp)$/i.test(file);
+								const isVideo = /\.(mp4|mov|avi|mkv|webm)$/i.test(file);
+								
+								return isImage ? (
+									<img
+										key={idx}
+										src={file}
+										alt={`Preview ${idx}`}
+										className="w-24 h-24 object-cover rounded-xl hover:opacity-80 transition block"
+										onClick={() => openModal(idx)}
+									/>
+								) : isVideo ? (
+									<div
+										key={idx}
+										className="w-24 h-24 flex items-center justify-center bg-black rounded-xl cursor-pointer hover:opacity-80 transition text-white"
+										onClick={() => openModal(idx)}
+									>
+										<FaPlay size={16} />
+									</div>
+								) : null;
+							})}
 						</div>
 						
 						{imagePaths.length > 6 && (
@@ -83,11 +95,37 @@ export const ImagePreviewModal = ({ imagePaths }: ImagePreviewModalProps) => {
 								</button>
 								
 								<div className="flex-1 flex justify-center items-center">
-									<img
-										src={imagePaths[currentIndex]}
-										alt="Full View"
-										className="max-w-full max-h-[80vh] object-contain rounded-box"
-									/>
+									{(() => {
+										const currentFile = imagePaths[currentIndex];
+										const isImage = /\.(jpg|jpeg|png|gif|webp)$/i.test(currentFile);
+										const isVideo = /\.(mp4|mov|avi|mkv|webm)$/i.test(currentFile);
+										
+										if (isImage) {
+											return (
+												<img
+													src={currentFile}
+													alt="Full View"
+													className="max-w-full max-h-[80vh] object-contain rounded-box"
+												/>
+											);
+										}
+										
+										if (isVideo) {
+											return (
+												<video
+													key={currentIndex}
+													src={currentFile}
+													controls
+													autoPlay
+													muted
+													playsInline
+													className="w-auto h-auto max-w-full max-h-[80vh] rounded-box"
+												/>
+											);
+										}
+										
+										return null;
+									})()}
 								</div>
 								
 								<button onClick={showNext} className="btn btn-circle btn-ghost text-xl">
@@ -104,8 +142,6 @@ export const ImagePreviewModal = ({ imagePaths }: ImagePreviewModalProps) => {
 							<button type="button" onClick={closeModal}>close</button>
 						</form>
 					</dialog>
-				</>
-			)}
 		</div>
 	);
 };

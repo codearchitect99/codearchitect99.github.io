@@ -1,4 +1,10 @@
 export const projectData = {
+	/*
+	Template
+	title: "Taskory",     Project title
+	src: "/markdown/project/taskory.md",      Project MD file src
+	name: "taskory"       // /src/assets/images/project/{name}      Project images dir name
+	*/
 	systemDesign: [
 		{
 			title: "Taskory",
