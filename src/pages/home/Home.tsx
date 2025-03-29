@@ -149,9 +149,7 @@ export const Home = () => {
 					setSelectedActivity={setSelectedActivity}
 				/>
 				
-				{imageUrls && (
-					<ImagePreviewModal imagePaths={imageUrls} />
-				)}
+				<ImagePreviewModal imagePaths={imageUrls} />
 				
 				<div className="prose prose-blue dark:prose-invert max-w-none mt-6">
 					<ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight]}>
