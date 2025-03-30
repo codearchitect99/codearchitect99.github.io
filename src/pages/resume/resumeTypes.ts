@@ -37,13 +37,3 @@ export interface Activity {
 	description: string[];
 	contribution: string[];
 }
-
-export interface ResumeType {
-	basicInfo: BasicInfo;
-	skills: Skills;
-	projects: Project[];
-	workExperience: WorkExperience[];
-	education: Education[];
-	certifications: Certification[];
-	activities: Activity[];
-}
