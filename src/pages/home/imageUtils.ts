@@ -1,7 +1,7 @@
 // src/utils/loadImages.ts
 
 const imageModules = import.meta.glob('/src/assets/images/project/**', {
-	eager: true,
+	eager: false,
 	as: 'url'
 });
 
