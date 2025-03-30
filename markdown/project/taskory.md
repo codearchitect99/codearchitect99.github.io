@@ -4,6 +4,8 @@
 
 **개발 형태**: 개인 프로젝트 (기획, 디자인, 개발, 배포 전 과정 단독 수행)
 
+**URLS**: https://github.com/Taskory
+
 **기술 스택**: Java(Spring Boot), MariaDB, Docker, AWS(EC2), React(TypeScript), Vercel, Figma, GitHub Docs, **JUnit**
 
 **프로젝트 소개**

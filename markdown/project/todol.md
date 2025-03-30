@@ -4,6 +4,8 @@
 
 **형태**: 팀 프로젝트
 
+**URLS**: https://github.com/orgs/Capston-LOLco/repositories
+
 **기술 스택**: NestJS(TypeScript), Firebase, MySQL
 
 **프로젝트 소개**
