@@ -2,7 +2,9 @@ import { NavLink } from "react-router-dom";
 
 export const NavBar = () => {
 	return (
-		<nav className="bg-white dark:bg-gray-900 shadow pt-4 border-b border-gray-300 px-4">
+		<>
+			<div className="w-full bg-blue-500 p-0.5"/>
+		<nav className="bg-white dark:bg-gray-900 shadow border-b border-gray-300 px-4">
 			<div className="flex">
 				<div className="flex">
 					<NavLink
@@ -45,5 +47,6 @@ export const NavBar = () => {
 				</div>
 			</div>
 		</nav>
+		</>
 	);
 };

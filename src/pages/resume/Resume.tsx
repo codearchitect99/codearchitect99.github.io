@@ -18,6 +18,7 @@ import profile from "/src/assets/profile.jpg";
 import { resumeData } from "./resumeData.ts";
 import React from "react";
 import {myInfo} from "../myInfo.ts";
+import {HiOutlineMail} from "react-icons/hi";
 
 export const Resume = () => {
 	const [basicInfo] = useState(myInfo);
@@ -51,7 +52,7 @@ export const Resume = () => {
 									rel="noopener noreferrer"
 									className="text-blue-600 hover:underline flex items-center gap-1"
 								>
-									<FaGithub /> GitHub
+									<FaGithub /> {basicInfo.github}
 								</a>
 							)}
 							{basicInfo.portfolio && (
@@ -87,7 +88,13 @@ export const Resume = () => {
 						</div>
 						{basicInfo.email && (
 							<p className="text-gray-500 dark:text-gray-200 mt-1 text-base flex items-center gap-1">
-								<FaEnvelope /> {basicInfo.email}
+								<HiOutlineMail className="text-xl text-blue-600 dark:text-blue-400" />
+								<a
+									href={`mailto:${myInfo.email}`}
+									className="text-blue-600 hover:underline flex items-center gap-1"
+								>
+									{myInfo.email}
+								</a>
 							</p>
 						)}
 						{basicInfo.simple_about && (
