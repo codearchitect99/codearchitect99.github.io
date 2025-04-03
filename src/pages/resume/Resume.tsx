@@ -36,7 +36,7 @@ export const Resume = () => {
 					id="basic_info"
 					className="border-b border-gray-400 pb-4 flex flex-col-reverse sm:flex-row gap-4"
 				>
-					<div className="sm:w-4/5 w-full">
+					<div className="sm:w-3/4 w-full">
 						<h1 className="text-black dark:text-white text-3xl sm:text-4xl font-bold">
 							{basicInfo.name}
 						</h1>
@@ -102,11 +102,11 @@ export const Resume = () => {
 						)}
 					</div>
 					{profile && (
-						<div className="sm:w-1/5 w-full flex justify-center items-center">
+						<div className="sm:w-1/4 w-full flex justify-center items-center">
 							<img
 								src={profile}
 								alt="Profile"
-								className="w-40 h-40 sm:w-52 sm:h-52 rounded-full shadow-2xl"
+								className="rounded-full shadow-2xl"
 							/>
 						</div>
 					)}

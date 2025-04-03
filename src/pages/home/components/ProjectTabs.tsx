@@ -1,4 +1,4 @@
-import { ProjectDataTypes } from "./projectDataTypes.ts";
+import { ProjectDataTypes } from "../projectDataTypes.ts";
 
 export const ProjectTabs = ({
 	                            tabs,
