@@ -80,14 +80,14 @@ export const resumeData = {
   ],
   "education": [
     {
-      "degree": "공과대학 소프트웨어학부 컴퓨터공학전공",
+      "degree": "공과대학 소프트웨어학부 컴퓨터공학전공(졸업 예정)",
       "institution": "제주대학교",
-      "date": "2018 - 2026"
+      "date": "2018.03 - 2025.08"
     },
     {
       "degree": "연계전공 빅데이터융합전공",
       "institution": "제주대학교",
-      "date": "2018 - 2026"
+      "date": "2018.03 - 2025.08"
     }
   ],
   "certifications": [
