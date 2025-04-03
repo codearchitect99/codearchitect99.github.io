@@ -9,7 +9,6 @@ import {
 } from "./resumeTypes.ts";
 import {
 	FaBlogger,
-	FaEnvelope,
 	FaExternalLinkAlt,
 	FaGithub,
 	FaLinkedin,
