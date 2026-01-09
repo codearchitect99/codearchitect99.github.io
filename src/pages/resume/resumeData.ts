@@ -88,13 +88,26 @@ export const resumeData = {
       "degree": "연계전공 빅데이터융합전공",
       "institution": "제주대학교",
       "date": "2018.03 - 2025.08"
-    }
+    },
+    {
+      "degree": "",
+      "institution": "제주대학교사범대학부설고등학교",
+      "date": "2015.03 - 2018.02"
+    },
   ],
   "certifications": [
-    // {
-    //   "name": "정보처리기사",
-    //   "date": "2021.06"
-    // }
+    {
+      "name": "정보처리기사 - 한국산업인력공단",
+      "date": "2025.09"
+    },
+    {
+      "name": "ADsP - 한국데이터베이스진흥원",
+      "date": "2025.11"
+    },
+    {
+      "name": "SQLD - 한국데이터베이스진흥원",
+      "date": "2025.12"
+    }
   ],
   "activities": [
     {

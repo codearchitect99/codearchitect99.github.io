@@ -144,6 +144,19 @@ export const Resume = () => {
 					),
 				},
 					{
+						id: "education",
+						title: "교육 & 학력",
+						subtitle: "Education",
+						content: education.map((edu, i) => (
+							<div key={`education-${i}`} className="border-b border-gray-300 border-dashed pb-2">
+								<p className="text-contents-title">
+									{edu.institution} - {edu.degree}
+								</p>
+								<p className="text-contents-caption">{edu.date}</p>
+							</div>
+						)),
+					},
+					{
 						id: "experience",
 						title: "인턴 & 실무 경험",
 						subtitle: "Work Experience",
@@ -158,34 +171,6 @@ export const Resume = () => {
 										<li key={`work-desc-${i}-${idx}`}>{d}</li>
 									))}
 								</ul>
-							</div>
-						)),
-					},
-					{
-						id: "projects",
-						title: "프로젝트 경험",
-						subtitle: "Projects",
-						content: projects.map((project, i) => (
-							<div key={`project-${i}`} className="border-b border-gray-300 border-dashed pb-2">
-								<p className="text-contents-title">
-									{project.title} | {project.project_type} - {project.sub_title}
-								</p>
-								<p className="text-contents-caption">{project.date}</p>
-								<ul className="list-disc pl-5 text-contents-description whitespace-pre-line">
-									{project.description.map((d, idx) => (
-										<li key={`project-desc-${i}-${idx}`}>{d}</li>
-									))}
-								</ul>
-								{project.contribution.length > 0 && (
-									<>
-										<p className="text-contents-description font-medium">주요 역할</p>
-										<ul className="list-disc pl-5 text-contents-description whitespace-pre-line">
-											{project.contribution.map((c, idx) => (
-												<li key={`project-contrib-${i}-${idx}`}>{c}</li>
-											))}
-										</ul>
-									</>
-								)}
 							</div>
 						)),
 					},
@@ -215,19 +200,36 @@ export const Resume = () => {
 							</div>
 						)),
 					},
+					
 					{
-						id: "education",
-						title: "교육 & 학력",
-						subtitle: "Education",
-						content: education.map((edu, i) => (
-							<div key={`education-${i}`} className="border-b border-gray-300 border-dashed pb-2">
+						id: "projects",
+						title: "프로젝트 경험",
+						subtitle: "Projects",
+						content: projects.map((project, i) => (
+							<div key={`project-${i}`} className="border-b border-gray-300 border-dashed pb-2">
 								<p className="text-contents-title">
-									{edu.institution} - {edu.degree}
+									{project.title} | {project.project_type} - {project.sub_title}
 								</p>
-								<p className="text-contents-caption">{edu.date}</p>
+								<p className="text-contents-caption">{project.date}</p>
+								<ul className="list-disc pl-5 text-contents-description whitespace-pre-line">
+									{project.description.map((d, idx) => (
+										<li key={`project-desc-${i}-${idx}`}>{d}</li>
+									))}
+								</ul>
+								{project.contribution.length > 0 && (
+									<>
+										<p className="text-contents-description font-medium">주요 역할</p>
+										<ul className="list-disc pl-5 text-contents-description whitespace-pre-line">
+											{project.contribution.map((c, idx) => (
+												<li key={`project-contrib-${i}-${idx}`}>{c}</li>
+											))}
+										</ul>
+									</>
+								)}
 							</div>
 						)),
-					}].map(({ id, title, subtitle, content }) => (
+					}
+					].map(({ id, title, subtitle, content }) => (
 					<section
 						key={id}
 						id={id}
